@@ -15,3 +15,19 @@ This is a simple user friendly application that stores all of your passwords in 
 •	Encrypted Passwords. <br />
 •	Simple and User Friendly UI. <br />
 •	Use only one Master Password <br />
+
+<br />
+## How to use
+Use the repo link to clone or download the zip file and extract it to run the code.
+<br />
+
+## Video Link , 
+
+For thorough explanation on this project, [CLICK HERE](https://youtu.be/Drn2kfzqGmo)
+
+### Name of student: Crystal Shrestha
+#### CU ID: 11782911
+#### Batch: March '30B'
+
+
+<p align="center"><b><u><i> Have a good day! </i></u></b><p>

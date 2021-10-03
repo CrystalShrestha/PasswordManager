@@ -31,6 +31,7 @@ def popup(text):
 
 root = Tk()
 root.title("Password Vault")
+root.wm_iconbitmap("vault.png")
 
 
 def hashpassword(input):
@@ -41,10 +42,12 @@ def hashpassword(input):
 
 
 def ScreenOne():
-    root.geometry("250x150")  # Size
+    root.geometry("250x150+600+350")  # Size
     lbl = Label(root, text="Create Master Password")  # Creating a Label
     lbl.config(anchor=CENTER)  # Aligning the Label to Center
     lbl.pack()  # Generating the created Label
+    root.wm_iconbitmap("vault.png")
+
 
     text2 = Entry(root, width=20, show="*")
     text2.pack()
@@ -76,7 +79,7 @@ def ScreenOne():
 
 
 def loginS():  # Login Screen
-    root.geometry("350x100")  # Size
+    root.geometry("350x100+600+350")  # Size
     lbl = Label(root, text="Enter Master Password")  # Creating a Label
     lbl.config(anchor=CENTER)  # Aligning the Label to Center
     lbl.pack()  # Generating the created Label
@@ -122,7 +125,6 @@ def PasswordVault():
         username = popup(text2)
         password = popup(text3)
 
-
         insert_fields = """INSERT INTO vault(website, username, password)
         VALUES(?, ?, ?)
         """
@@ -137,22 +139,20 @@ def PasswordVault():
 
         PasswordVault()
 
-
-    root.geometry("700x350")  # Size for the Vault
+    root.geometry("700x350+400+250")  # Size for the Vault
     label1 = Label(root, text="Password Vault")  # Label for the Vault
-    label1.grid(column = 1, pady=10)
+    label1.grid(column=1, pady=10)
+    root.wm_iconbitmap("vault.png")
 
+    btn = Button(root, text="Add New Password", command=addEntry)
+    btn.grid(column=1, pady=10)
 
-    btn = Button(root, text = "Add New Password", command = addEntry)
-    btn.grid(column = 1, pady = 10)
-
-    label1 = Label(root, text = "Website")
-    label1.grid(row = 2, column = 0, padx = 80)
-    label1 = Label(root, text = "Username")
-    label1.grid(row = 2, column = 1, padx = 80)
-    label1 = Label(root, text = "Password")
-    label1.grid(row = 2, column = 2, padx = 80)
-
+    label1 = Label(root, text="Website")
+    label1.grid(row=2, column=0, padx=80)
+    label1 = Label(root, text="Username")
+    label1.grid(row=2, column=1, padx=80)
+    label1 = Label(root, text="Password")
+    label1.grid(row=2, column=2, padx=80)
 
     cursor.execute("SELECT * FROM vault")
     if (cursor.fetchall() != None):
@@ -162,22 +162,20 @@ def PasswordVault():
             array = cursor.fetchall()
 
             lbl1 = Label(root, text=(array[i][1]))
-            lbl1.grid(column = 0, row = i+3)    #i+3 because i=0, checking the entry and create a row adding 3.
+            lbl1.grid(column=0, row=i + 3)  # i+3 because i=0, checking the entry and create a row adding 3.
             lbl1 = Label(root, text=(array[i][2]))
-            lbl1.grid(column = 1, row = i+3)
+            lbl1.grid(column=1, row=i + 3)
             lbl1 = Label(root, text=(array[i][3]))
-            lbl1.grid(column = 2, row = i+3)
+            lbl1.grid(column=2, row=i + 3)
 
-            btn = Button(root, text = "Delete", command=partial(removeEntry, array[i][0]))  #Button to delete the input
-            btn.grid(column = 3, row = i+3, pady = 10)
+            btn = Button(root, text="Delete", command=partial(removeEntry, array[i][0]))  # Button to delete the input
+            btn.grid(column=3, row=i + 3, pady=10)
 
-            i = i+1
+            i = i + 1
 
             cursor.execute("SELECT * FROM vault")
             if (len(cursor.fetchall()) <= i):
                 break
-
-
 
 
 cursor.execute("SELECT * FROM masterpassword")  # Calling the Function
